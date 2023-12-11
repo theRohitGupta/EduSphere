@@ -46,6 +46,9 @@ app.listen(PORT, () => {
     console.log("SERVER STARTED AT PORT :" + `${PORT}`);
 })
 
-// app.get('/', (req,res)=>{
-//     res.send("<h1>THIS IS HOMEPAGE</h1>")
-// });
+app.get('/', (req,res)=>{
+    return res.json({
+        success : true,
+        message : " YOUR SERVER IS UP AND RUNNING..."
+    })
+});
