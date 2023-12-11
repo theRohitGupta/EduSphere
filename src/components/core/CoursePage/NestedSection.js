@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
-import { IoChevronForward, IoChevronDown } from "react-icons/io5";
+import React from 'react'
 import { convertSecondsToDuration } from '../../../utils/dateFormatter';
 import NestedSubSection from './NestedSubSection';
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel } from '@chakra-ui/accordion';
 
-function NestedSection({section, collapse}) {
-    const [ sectionCollapse, setSectionCollapse ] = useState(false)
+function NestedSection({section}) {
     const totalSectionDuration = (section) => {
         let duration = 0
         section?.subSection?.forEach((lecture) => {
