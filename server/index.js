@@ -16,7 +16,7 @@ const db = require("./config/database");
 const fileUpload = require("express-fileupload");
 const {cloudinaryConnect} = require("./config/cloudinary");
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 
 db.dbConnect();
 app.use(express.json());
@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(
     cors(
     {
-        origin : "http://localhost:3000",
+        origin : "*",
         credentials : true,
     })
 )
@@ -46,6 +46,6 @@ app.listen(PORT, () => {
     console.log("SERVER STARTED AT PORT :" + `${PORT}`);
 })
 
-app.get('/', (req,res)=>{
-    res.send("<h1>THIS IS HOMEPAGE</h1>")
-});
+// app.get('/', (req,res)=>{
+//     res.send("<h1>THIS IS HOMEPAGE</h1>")
+// });
