@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
-// import rzpLogo from "../../assets/Logo/rzp_logo.png"
+import rzpLogo from "../../assets/Logo/EduSphereLogo.png"
 import { studentsEndpoints } from "../apis";
 import { resetCart } from "../../slices/cartSlice";
 import { setPaymentLoading } from "../../slices/courseSlice";
@@ -85,13 +85,13 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
         // console.log(process.env.REACT_APP_RAZORPAY_KEY);
         
         const options = {
-            key: "rzp_test_Dnz2naeLUOHy6w",
+            key: process.env.REACT_APP_RAZORPAY_KEY,
             currency: orderResponse.data.message.currency,
             amount: `${orderResponse.data.message.amount}`,
             order_id: orderResponse.data.message.id,
             name: "EduSphere",
             description: "ThankYou for Purchasing The Course",
-            // image : rzpLogo,
+            image : rzpLogo,
             prefill: {
                 name: `${userDetails.firstName} ${userDetails.lastName}`,
                 email: userDetails.email
