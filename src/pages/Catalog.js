@@ -35,6 +35,7 @@ function Catalog() {
       try{
         if(categoryId){
           const result = await getCatalogPageData(categoryId)
+          // console.log(result)
           // console.log(result?.data?.data)
           setCatalogPagedata(result?.data?.data)
         }
@@ -94,7 +95,6 @@ function Catalog() {
                 {/* SECTION 3 */}
                 <div className='flex flex-col justify-between gap-4'>
                   <p className=' text-2xl leading-9 text-richblack-5 font-semibold'>Frequently Bought</p>
-                  <div>
                     <div className=' grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-8'>
                       {
                           catalogPageData?.mostSellingCourses?.slice(0,4).map((course,index) => (
@@ -102,7 +102,6 @@ function Catalog() {
                           ))
                       }
                     </div>
-                  </div>
                 </div>
             </div>
 

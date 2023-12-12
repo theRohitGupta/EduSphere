@@ -10,6 +10,7 @@ import LogBtns from '../core/Navbar/LogBtns'
 import { IoIosArrowDown } from "react-icons/io"
 import { fetchCourseCategories } from '../../services/operations/courseDetailsAPI'
 import { ACCOUNT_TYPE } from '../../utils/constants'
+import Spinner from './Spinner'
 
 function Navbar({backgroundColor}) {
 
@@ -17,6 +18,7 @@ function Navbar({backgroundColor}) {
     const {user} = useSelector((state) => state.profile);
     const {totalItems} = useSelector((state) => state.cart);
     const location = useLocation();
+    const [ loading, setLoading ] = useState(false)
     const matchRoute = (route) => {
         return matchPath({path:route}, location.pathname);
     }
@@ -24,12 +26,14 @@ function Navbar({backgroundColor}) {
     const [subLinks, setSubLinks] = useState([]);
 
     const fetchSublinks = async() => {
+        setLoading(true)
         try{
             const result = await fetchCourseCategories()
             setSubLinks(result);
         }catch(err){
             console.log("CANT FETCH CATEGORIES", err);
         }
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -59,17 +63,25 @@ function Navbar({backgroundColor}) {
                                                 <div className='invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] flex-col rounded-lg bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all duration-150 group-hover:visible group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[300px]'>
                                                     <div className="absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5"></div>
                                                     {
-                                                        subLinks.length ? (
-                                                            subLinks.map((sublink, index) => {
-                                                                return (
-                                                                    <Link to={`/catalog/${sublink.name.replaceAll(" ","-").toLowerCase()}`} key={index}>
-                                                                        <p className='rounded-lg bg-transparent py-4 pl-4 hover:bg-richblack-50' >
-                                                                            {sublink.name}
-                                                                        </p>
-                                                                    </Link>
-                                                                )
-                                                            })
-                                                        ) : (<div>No Categories Created</div>)
+                                                        loading ? (
+                                                            <div className=' grid place-content-center min-h-[100px]'><Spinner/></div>
+                                                        ) : (
+                                                            <>
+                                                            {
+                                                                subLinks.length ? (
+                                                                    subLinks.map((sublink, index) => {
+                                                                        return (
+                                                                            <Link to={`/catalog/${sublink.name.replaceAll(" ","-").toLowerCase()}`} key={index}>
+                                                                                <p className='rounded-lg bg-transparent py-4 pl-4 hover:bg-richblack-50 capitalize' >
+                                                                                    {sublink.name}
+                                                                                </p>
+                                                                            </Link>
+                                                                        )
+                                                                    })
+                                                                ) : (<div className=' text-center'>No Categories Created</div>)
+                                                            }
+                                                            </>
+                                                        )
                                                     }
                                                 </div>
                                             </div>) 
