@@ -19,7 +19,7 @@ export default function ProfileDropDown() {
   if(!user) return null
     
   return (
-    <button className='relative' onClick={() => setOpen(true)}>
+    <div className='relative' onClick={() => setOpen(true)}>
       <img className='rounded-full aspect-square w-[30px] h-[30px] object-cover' src={user?.image} alt={`${user.firstName}`}/>
       {
         open && (
@@ -50,6 +50,6 @@ export default function ProfileDropDown() {
         )
       }
       {confirmationModal && <ConfirmationModal modalData={confirmationModal}/>}
-    </button>
+    </div>
   )
 }

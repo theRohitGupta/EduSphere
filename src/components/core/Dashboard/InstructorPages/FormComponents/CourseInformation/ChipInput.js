@@ -44,7 +44,7 @@ function ChipInput({name, label, register, errors, setValue, getValues, disabled
         {
           tagList.map((item,index) => (
             <span key={index} className=' px-2 py-1 flex justify-center items-center w-fit bg-richblack-700 text-yellow-50 rounded-3xl'>
-              {item}
+              #{item}
               <button type='button' onClick={() => disabled ? {} : handleRemoveTag(index)}><RxCross2/></button>
             </span>
           ))

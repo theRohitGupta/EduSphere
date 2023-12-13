@@ -21,9 +21,13 @@ export const formattedDateTime = (date) => {
 }
 
 export function convertSecondsToDuration(totalSeconds){
-    const hours = Math.floor(totalSeconds/3600)
-    const minutes = Math.floor((totalSeconds%3600)/60)
-    const seconds = Math.floor((totalSeconds%60)%60)
+    let hours = Math.floor(totalSeconds/3600)
+    let minutes = Math.floor((totalSeconds%3600)/60)
+    let seconds = Math.floor((totalSeconds%60)%60)
+
+    hours = hours >= 0 && hours < 10 ? `0${hours}` : `${hours}`  
+    minutes = minutes >= 0 && minutes < 10 ? `0${minutes}` : `${minutes}`  
+    seconds = seconds >= 0 && seconds < 10 ? `0${seconds}` : `${seconds}`
 
     if(hours > 0) return `${hours}h ${minutes}m`
     else if(minutes > 0) return `${minutes}m ${seconds}s`
@@ -31,9 +35,13 @@ export function convertSecondsToDuration(totalSeconds){
 }
 
 export function convertSecondsToDurationTime(totalSeconds){
-    const hours = Math.floor(totalSeconds/3600)
-    const minutes = Math.floor((totalSeconds%3600)/60)
-    const seconds = Math.floor((totalSeconds%60)%60)
+    let hours = Math.floor(totalSeconds/3600)
+    let minutes = Math.floor((totalSeconds%3600)/60)
+    let seconds = Math.floor((totalSeconds%60)%60)
+
+    hours = hours >= 0 && hours < 10 ? `0${hours}` : `${hours}`  
+    minutes = minutes >= 0 && minutes < 10 ? `0${minutes}` : `${minutes}`  
+    seconds = seconds >= 0 && seconds < 10 ? `0${seconds}` : `${seconds}`  
 
     if(hours > 0) return `${hours}:${minutes}`
     else if(minutes > 0) return `${minutes}:${seconds}`
