@@ -25,18 +25,17 @@ function Navbar({backgroundColor}) {
 
     const [subLinks, setSubLinks] = useState([]);
 
-    const fetchSublinks = async() => {
-        setLoading(true)
-        try{
-            const result = await fetchCourseCategories()
-            setSubLinks(result);
-        }catch(err){
-            console.log("CANT FETCH CATEGORIES", err);
-        }
-        setLoading(false)
-    }
-
     useEffect(() => {
+        const fetchSublinks = async() => {
+            setLoading(true)
+            try{
+                const result = await fetchCourseCategories()
+                setSubLinks(result);
+            }catch(err){
+                console.log("CANT FETCH CATEGORIES", err);
+            }
+            setLoading(false)
+        }
         fetchSublinks();
     }, [])
 

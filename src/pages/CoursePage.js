@@ -23,7 +23,7 @@ import { Accordion } from '@chakra-ui/accordion'
 
 function CoursePage() {
     const courseId = useParams()
-    const [ loading, setLoading ] = useState(false)
+    const [ loading, setLoading ] = useState(true)
     const [ courseData, setCourseData ] = useState(null)
     const [ avgReviewCount, setAvgReviewCount ] = useState(0)
     const [ totalLectures, setTotalLectures ] = useState(0)
@@ -35,24 +35,23 @@ function CoursePage() {
     const [ purchasedCourse, setPurchasedCourse ] = useState(false)
     // console.log(courseData)
     
-    const courseDetails = async() => {
-      setLoading(true)
-      try{
-        const result = await getCourseDetails(courseId)
-        setCourseData(result?.data?.data)
-      }catch(err){
-        console.log("COURSE DETAILS COULD NOT BE FETCHED",err)
-      }
-      setLoading(false)
-    }
-
     useEffect(() => {
+      const courseDetails = async() => {
+        setLoading(true)
+        try{
+          const result = await getCourseDetails(courseId)
+          setCourseData(result?.data?.data)
+        }catch(err){
+          console.log("COURSE DETAILS COULD NOT BE FETCHED",err)
+        }
+        setLoading(false)
+      }
       courseDetails();
     },[courseId,user])
 
     useEffect(() => {
       if(courseData){
-        if(courseData.studentsEnrolled.includes(user._id)) setPurchasedCourse(true)
+        if(courseData?.studentsEnrolled?.includes(user?._id)) setPurchasedCourse(true)
       }
 
       const count = getAvgRating(courseData?.ratingsAndReviews)
@@ -81,7 +80,7 @@ function CoursePage() {
     } 
 
     const handleCollapse = () => {
-      console.log("Yes")
+      // console.log("Yes")
     }
 
   return (
