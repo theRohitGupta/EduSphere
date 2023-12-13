@@ -75,7 +75,7 @@ exports.contactUsEmail = (
     <body>
         <div class="container">
             <a href="https://edusphere-byrohitgupta.vercel.app"><img class="logo"
-                    src="https://res.cloudinary.com/dp8l8uxgr/image/upload/v1702106217/EduSphereWhiteFull_ai0n87.png" alt="EduSphere Logo"></a>
+                    src="https://res.cloudinary.com/dp8l8uxgr/image/upload/v1702106217/EDUSPHERE/EduSphereWhiteFull_ai0n87.png" alt="EduSphere Logo"></a>
             <div class="message">Contact Form Confirmation</div>
             <div class="body">
                 <p>Dear ${firstname} ${lastname},</p>
