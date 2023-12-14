@@ -70,7 +70,7 @@ function EnrolledCourses() {
             <p className=' text-3xl leading-9 text-richblack-5 font-medium'>Enrolled Courses</p>
           </div>
           {
-            allEnrolledCourses.length ? (
+            allEnrolledCourses?.length ? (
               <div className=' flex flex-col gap-10'>
               <div className={`flex flex-wrap gap-x-2 bg-richblack-800 border-b-[1px] border-richblack-100 w-fit px-[4px] py-[4px] rounded-3xl mt-9 text-richblack-100 `}>
                   <button className={'py-[6px] px-[20px] rounded-full transition-all duration-400'+`${allPendingCompleted === "all" ? " bg-richblack-900 text-richblack-5" : "bg-transparent text-richblack-200"}`} onClick={() => setAllPendingCompleted("all")}>
@@ -84,7 +84,7 @@ function EnrolledCourses() {
                   </button>
               </div>
               {
-                enrolledCourses.length ? (
+                enrolledCourses?.length ? (
                 <div>
                 <div className="border-[1px] border-richblack-700 rounded-lg">
                       <div className=" bg-richblack-700 rounded-t-lg">
